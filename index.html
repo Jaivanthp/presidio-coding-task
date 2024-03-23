@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="/SCSS/style.css">
+    <title>Behance Clone</title>
+    <style>
+        body {
+          font: 16px Arial;  
+        }
+        
+        .search-items {
+          position: absolute;
+          border: 1px solid #d4d4d4;
+          border-bottom: none;
+          border-top: none;
+          z-index: 5;
+          /*search items to be the same width as the container:*/
+          top: 100%;
+          left: 0;
+          right: 0;
+        }
+        
+        .search-items div {
+          padding: 10px;
+          cursor: pointer;
+          background-color: #fff; 
+          border-bottom: 1px solid #d4d4d4; 
+        }
+        
+        .search-items div:hover {
+          background-color: #e9e9e9; 
+        }
+        </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="left-nav">
+            <a href="./"><img src="/images/behance logo.svg" alt=""></a>
+            <button>For You</button>
+            <button>Discover</button>
+            <button>Livestreams</button>
+            <button>Jobs</button>
+            
+        </div>
+
+        <div class="input-container">
+            <input id="myInput" type="text" placeholder="Search the creative world at work" autocomplete="off">
+            <img src="/images/search-icon.png" alt="">
+        </div>
+
+        <script>
+            function autocomplete(inp, arr) {
+
+                inp.addEventListener("input", function(e) {
+                  var a, b, i, val = this.value;
+
+                  closeAllLists();
+                  if (!val) { return false;}
+
+                  a = document.createElement("DIV");
+                  a.setAttribute("id", this.id + "search-list");
+                  a.setAttribute("class", "search-items");
+
+                  this.parentNode.appendChild(a);
+                  for (i = 0; i < arr.length; i++) {
+
+                    if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        b = document.createElement("DIV");
+                        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                        b.innerHTML += arr[i].substr(val.length);
+                        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                        
+                        b.addEventListener("click", function(e) {
+                          inp.value = this.getElementsByTagName("input")[0].value;
+                          closeAllLists();
+                      });
+                      a.appendChild(b);
+                    }
+                  }
+              });
+              
+              function closeAllLists(elmnt) {
+                var x = document.getElementsByClassName("search-items");
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                        x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+              }
+              document.addEventListener("click", function (e) {
+                  closeAllLists(e.target);
+              });
+            }
+            
+            var countries = ["Jordan","Afghanistan","Friend","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+            autocomplete(document.getElementById("myInput"), countries);
+        </script>
+
+<div class="select">
+    <select name="cars" id="cars">
+        <option value="recommended">Recommended</option>
+        <option value="curated">Curated</option>
+        <option value="most_appreciated">Most Appreciated</option>
+        <option value="most_viewed">Most Viewed</option>
+        <option value="most_discusseded">Most Discussed</option>
+        <option value="most_recent">Most Recent</option>
+      </select> 
+      
+</div>
+        <div class="right-nav">            
+
+            <a><i class="fas fa-envelope"></i></a>
+            <i class="fas fa-bell"></i>
+            <div>
+                <a href="signin.html"><button>Sign Up</button></a>
+            </div>
+            
+              
+        </div>
+    </header>
+
+    <section class="project-container">
+        <h2>Projects from creatives you follow and more</h2>
+        <div class="project-wrapper">
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF9bkC2Sp9V1MSQWHQZttSb_z2wLIKs3VQow&usqp=CAU" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/profile_pic.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://img.freepik.com/free-vector/doodle-hand-drawn-miscellaneous-illustrations_23-2150551954.jpg" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/user1.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://imageio.forbes.com/specials-images/imageserve/6200b0dddcf32d3be937fa84/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/profile_pic.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="data:image/jpeg;base64,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" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/user1.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF9bkC2Sp9V1MSQWHQZttSb_z2wLIKs3VQow&usqp=CAU" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/profile_pic.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://www.thoughtco.com/thmb/g8h6NnWWWVkm-KXNBgMx-0Edd2U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages_482194715-56a1329e5f9b58b7d0bcf666.jpg" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/user1.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF9bkC2Sp9V1MSQWHQZttSb_z2wLIKs3VQow&usqp=CAU" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/profile_pic.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://img.freepik.com/free-vector/doodle-hand-drawn-miscellaneous-illustrations_23-2150551954.jpg" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/user1.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF9bkC2Sp9V1MSQWHQZttSb_z2wLIKs3VQow&usqp=CAU" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/profile_pic.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://img.freepik.com/free-vector/doodle-hand-drawn-miscellaneous-illustrations_23-2150551954.jpg" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/user1.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF9bkC2Sp9V1MSQWHQZttSb_z2wLIKs3VQow&usqp=CAU" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/profile_pic.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://img.freepik.com/free-vector/doodle-hand-drawn-miscellaneous-illustrations_23-2150551954.jpg" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/user1.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="/images/projects/project-img2.jpg" alt=""></a>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/user1.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><i class="fas fa-thumbs-up"></i>425</p>
+                        <p><i class="fas fa-eye"></i>2.3k</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="https://img.freepik.com/free-vector/doodle-hand-drawn-miscellaneous-illustrations_23-2150551954.jpg" class="image" alt=""></a>
+                <div class="middle">
+                    <div class="ribbon">
+                        <img alt="" src="/images/projects/cta.png">
+                    </div>
+                </div>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/user1.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><button class="like-button"><i class="fas fa-thumbs-up"></i>425</button></p>
+                        <p><button class="views"><i class="fas fa-eye"></i>2.3k</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <a href="/gallery/project1324652.html"><img src="/images/projects/project-img2.jpg" alt=""></a>
+                <div class="projects-info">
+                    <div class="user">
+                        <img src="/images/users/user1.jpg" alt="">
+                        <a href="/user/jordan-dice.html"><p>Jordan Dice</p></a>
+                    </div>
+                    <div class="photo-stats">
+                        <p><i class="fas fa-thumbs-up"></i>425</p>
+                        <p><i class="fas fa-eye"></i>2.3k</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <footer>
+        <p class="footer_text">All rights reserved to Behance</p>
+    </footer>
+
+
+
+</body>
+</html>
